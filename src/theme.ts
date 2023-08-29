@@ -1,15 +1,5 @@
 import { experimental_extendTheme as extendTheme } from '@mui/material/styles'
-import { Theme as MuiTheme} from '@mui/material/styles'
-
-interface ExtendedTheme extends MuiTheme {
-  trello: {
-    appBarHeight: string;
-    boardBarHeight: string;
-    boardContentHeight: string;
-    columnHeaderHeight: string;
-    columnFooterHeight: string;
-  };
-}
+import { Theme } from '@mui/material/styles/createTheme'
 
 const APP_BAR_HEIGHT = '58px'
 const BOARD_BAR_HEIGHT = '60px'
@@ -18,20 +8,18 @@ const COLUMN_HEADER_HEIGHT = '50px'
 const COLUMN_FOOTER_HEIGHT = '56px'
 
 // Create a theme instance.
-const theme: ExtendedTheme = extendTheme({
+const theme: Theme = extendTheme({
   trello: {
     appBarHeight: APP_BAR_HEIGHT,
     boardBarHeight: BOARD_BAR_HEIGHT,
     boardContentHeight: BOARD_CONTENT_HEIGHT,
     columnHeaderHeight: COLUMN_HEADER_HEIGHT,
-    columnFooterHeight: COLUMN_FOOTER_HEIGHT,
+    columnFooterHeight: COLUMN_FOOTER_HEIGHT
   },
-  
-  cssVarPrefix: '',
 
   colorSchemes: {
     light: {},
-    dark: {},
+    dark: {}
   },
 
   components: {
@@ -40,55 +28,61 @@ const theme: ExtendedTheme = extendTheme({
         body: {
           '*::-webkit-scrollbar': {
             width: '8px',
-            height: '8px',
+            height: '8px'
           },
           '*::-webkit-scrollbar-thumb': {
             backgroundColor: '#dcdde1',
-            borderRadius: '8px',
+            borderRadius: '8px'
           },
           '*::-webkit-scrollbar-thumb:hover': {
-            backgroundColor: 'white',
-          },
-        },
-      },
+            backgroundColor: 'white'
+          }
+        }
+      }
     },
 
+    // Name of the component
     MuiButton: {
       styleOverrides: {
+        // Name of the slot
         root: {
+          // Some CSS
           textTransform: 'none',
           borderWidth: '0.5px',
-          '&:hover': { borderWidth: '0.5px' },
-        },
-      },
+          '&:hover': { borderWidth: '0.5px' }
+        }
+      }
     },
 
     MuiInputLabel: {
       styleOverrides: {
-        root: { fontSize: '0.875rem' },
-      },
+        // Name of the slot
+        root: { fontSize: '0.875rem' }
+      }
     },
 
     MuiTypography: {
       styleOverrides: {
+        // Name of the slot
         root: {
-          '&.MuiTypography-body1': { fontSize: '0.875rem' },
-        },
-      },
+          '&.MuiTypography-body1': { fontSize: '0.875rem' }
+        }
+      }
     },
 
     MuiOutlinedInput: {
       styleOverrides: {
+        // Name of the slot
         root: {
           fontSize: '0.875rem',
           '& fieldset': { borderWidth: '0.5px' },
           '&:hover fieldset': { borderWidth: '1px !important' },
-          '&:Mui-focused fieldset': { borderWidth: '1px !important' },
-        },
-      },
-    },
-  },
+          '&:Mui-focused fieldset': { borderWidth: '1px !important' }
+        }
+      }
+    }
+  }
   // ...other properties
-});
+})
 
 export default theme

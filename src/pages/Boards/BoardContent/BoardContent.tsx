@@ -4,7 +4,7 @@ import ListColumns from './ListColumns/ListColumns'
 import { BoardType, ColumnData } from '../../../apis/mock-data'
 import {mapOrder} from '../../../utils/sorts'
 import { DndContext, DragEndEvent } from '@dnd-kit/core'
-// import { arrayMove } from '@dnd-kit/sortable'
+import { arrayMove } from '@dnd-kit/sortable'
 
 
 interface BoardContentProps {
@@ -20,23 +20,21 @@ function BoardContent({ board }: BoardContentProps) {
   },[board])
 
   const handleDragEnd = (event: DragEndEvent) =>{
-    console.log('handleDragEnd: ' , event)
-    // const { active, over }= event
+    // console.log('handleDragEnd: ' , event)
+    const { active, over }= event
     
-    // if(over && active.id !== over.id){
-    //     const oldIndex = orderedColumnsState.findIndex(c => c._id === active.id) 
+    if(over && active.id !== over.id){
+      const oldIndex = orderedColumnsState.findIndex(c => c._id === active.id) 
 
-    //     const newIndex = orderedColumnsState.findIndex(c => c._id === over.id) 
+      const newIndex = orderedColumnsState.findIndex(c => c._id === over.id) 
 
-    //     const dndOrderedColumns = arrayMove(orderedColumnsState,oldIndex,newIndex)
-      
-    //     const dndOrderedColumnsIds = dndOrderedColumns.map(c => c._id)
+      const dndOrderedColumns = arrayMove(orderedColumnsState,oldIndex,newIndex)
 
-    //     console.log('dndOrderedColumns: ', dndOrderedColumns)
-    //     console.log('dndOrderedColumnsIds: ', dndOrderedColumnsIds)
+      // console.log('dndOrderedColumns: ', dndOrderedColumns)
+      // console.log('dndOrderedColumnsIds: ', dndOrderedColumnsIds)
 
-    //     setOrderedColumnsState(dndOrderedColumns)
-    //   }
+     setOrderedColumnsState(dndOrderedColumns)
+    }
   }
   
   return (
